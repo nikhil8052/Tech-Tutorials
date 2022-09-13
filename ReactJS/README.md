@@ -219,7 +219,7 @@ However, React provides a special Hook called useEffect to make lifecycle method
 
 
         useEffect(() => {
-        //do something
+        //do something component update code 
         }, [count]);  
 
 Now, the useEffect() method will run only if count changes.
@@ -235,3 +235,24 @@ To mimic componentWillUnmount, useEffect may return a function that cleans up af
         });
 
 Just like with the useState hook, we need to import useEffect to be able to use it: import React, { useState, useEffect } from 'react';
+
+
+# NPM vs NPX 
+
+- npm 
+Stands for Node Package Manager totally written in JavaScript.
+The required packages and modules in the Node project are installed using npm.
+Npm is a tool that use to install packages.
+
+- npx 
+npx stands for Node Package Execute and it comes with npm.It is an npm package runner that can execute any package that you want from the npm registry without even installing that package. 
+The npx is useful during a single time use package.
+You can execute your package without installation, to do so run the following command.
+
+ - npx your-package-name
+
+Npx is a tool that use to execute packages.
+
+
+# Package Vs Module
+

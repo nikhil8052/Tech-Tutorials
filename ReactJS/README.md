@@ -93,3 +93,145 @@ Components let you split the page into independent and reusable parts.This makes
 In React, there are two types of components that you can use: Functional Components and Class Components.
 
 A functional component is a simple JavaScript function:
+
+- Example 
+
+    
+        import React from 'react';
+        import ReactDOM from 'react-dom';
+        import Demo from './App';
+        
+        ReactDOM.render(
+        <React.StrictMode>
+            <Demo />
+        </React.StrictMode>,
+        document.getElementById('root')
+        );
+
+
+# Props 
+
+
+Functional components can accept arguments, similar to JavaScript functions. These arguments are called props, and represent an object.
+
+- Example 
+
+    function Hello(props) {
+         return <p>Hello, {props.name}!</p>;
+    }
+
+- Props in Class Components 
+
+Props can be accessed in class components using this.props.
+
+        class Hello extends React.Component {
+        render() {
+            return <p>Hello, {this.props.name}!</p>;
+        }
+        } 
+
+# State 
+
+Many web apps need their components to change their data, for example, after user interaction (clicking a button, submitting a form, etc.).
+However, props cannot be changed.
+
+- Changing State 
+
+State should not be modified directly. Instead, React provides a setState() method, that can be used to modify state.
+
+when setState is called, React automatically re-renders the affected component with the new state!
+
+
+# Props vs State 
+
+- We use props to pass data to components.
+- Components use state to manage their data.
+- Props are read-only and cannot be modified.
+- State can be modified by its component using the setState() method.
+- The setState() method results in re-rendering the component affected.
+
+
+# Hooks 
+
+Earlier version of React allowed to use state only with class components.
+In recent iterations of React, a new feature called hooks was introduced, allowing to use state inside of functional components.
+
+useState returns a pair, the current state value and a function, that lets you change the state.
+useState takes one argument, which is the initial value of the state.
+
+- Example 
+
+    import React, { useState } from 'react'; 
+    function Hello() {
+    const [name, setName] = useState("David");
+
+    return <h1>Hello {name}.</h1>;
+    }
+
+ we create a name state variable and a setName function. The square brackets syntax is called array destructuring. It assigns the name variable to the current state value, and setName to the function that allows to change the state. You can name these variables anything you like.
+
+
+        function Counter() {
+        const [counter, setCounter] = useState(0);
+
+        function increment() {
+            setCounter(counter+1);
+        }
+
+        return <div>
+        <p>{counter}</p>
+        <button onClick={increment}>
+            Increment
+        </button>
+        </div>;
+        } 
+
+- Note : Hooks cannot be used in the class component.
+
+
+# Lifecycle Methods 
+
+Three life cycle method of the class are 
+
+- componentDidMount : After rendered
+- componentDidUpdate : once component gets updated
+- componentWillUnmount :- Clean up code (While unmountig the component)
+
+
+React provides special lifecycle methods for class components, which are called when components are mounted, updated or unmounted.
+
+- Mounting :  is the process when a component is rendered on the page.The componentDidMount method is called when a component is rendered on the page.
+    componentDidMount() {
+    this.setState({counter: 42});
+    }
+
+componentDidMount is typically used for populating the state inside of a component when it initially mounts to the DOM.
+
+- Unmounting : is the process when a component is removed from the page.Similarly, the componentWillUnmount() lifecycle method is called right before the component is removed from the DOM. It can be used to free up resources taken by the component.
+
+
+- componentDidUpdate : Another lifecycle method is componentDidUpdate(), which is called when a component is updated in the DOM.componentDidUpdate() is only called when the component is updated
+
+# useEffect  
+
+The lifecycle methods we covered are only available for class components.
+However, React provides a special Hook called useEffect to make lifecycle methods available in functional components. It combines the componentDidMount, componentDidUpdate, and componentWillUnmount methods into one.
+
+
+        useEffect(() => {
+        //do something
+        }, [count]);  
+
+Now, the useEffect() method will run only if count changes.
+
+To mimic componentWillUnmount, useEffect may return a function that cleans up after it:
+
+        useEffect(() => {
+        // do something
+        
+        return () => {
+            // cleanup
+        }; 
+        });
+
+Just like with the useState hook, we need to import useEffect to be able to use it: import React, { useState, useEffect } from 'react';

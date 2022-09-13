@@ -256,3 +256,90 @@ Npx is a tool that use to execute packages.
 
 # Package Vs Module
 
+
+# Event Handling 
+
+Handling events in React is very similar to handling events in the DOM.
+
+The only difference is that event names must be in  camelCase  and the event handler needs to be passed in curly braces.
+
+- Example 
+
+        <code>
+        <button onClick={handleClick}>
+        My Button
+        </button> 
+        </code>
+
+# Handling User Input 
+
+One of the common ways that users interact with web pages is through text fields.
+
+- We can handle user input in React using the onChange event of the text field.When the value of the text field changes, the event handler is called, updating the value of the field in the component's state.This way you always have the actual value of the text field in the state.
+
+    function Converter() {
+    const [km, setKm] = useState(0);
+
+    function handleChange(e) {
+        setKm(e.target.value);
+    }
+    function convert(km) {
+        return (km/1.609).toFixed(2);
+    }
+
+    return <div>
+    <input type="text" value={km}
+        onChange={handleChange} />
+    <p> {km} km is {convert(km)} miles </p>
+    </div>;
+    }
+
+
+# Forms 
+
+        function AddForm() {
+        const [sum, setSum] = useState(0);
+        const [num, setNum] = useState(0);
+
+        function handleChange(e) {
+            setNum(e.target.value);
+        }
+
+        function handleSubmit(e) {
+            setSum(sum + Number(num));
+            e.preventDefault();
+        }
+
+        return <form onSubmit={handleSubmit}>
+        <input type="number" value={num} onChange={handleChange} />
+        <input type="submit" value="Add" />
+        <p> Sum is {sum} </p>
+        </form>;
+        }
+
+# Lists 
+
+    const arr = ["A", "B", "C"];
+
+    <MyList data={arr} />
+
+    function MyList(props) {
+        const arr = props.data;
+        const listItems = arr.map((val) =>
+            <li>{val}</li>
+    );
+    return <ul>{listItems}</ul>;
+    }
+
+
+# Keys 
+
+Each element in a list must have a key attribute.
+Keys act as a unique identity, identifying each element.
+Usually, these are IDs from your data, or can be auto-generated indexes.
+
+- Example 
+
+        const listItems = arr.map((val, index) =>
+        <li key={index}>{val}</li>
+        );
